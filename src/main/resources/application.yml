@@ -1,0 +1,11 @@
+amazon:
+  dynamodb:
+    endpoint: https://dynamodb.us-west-2.amazonaws.com
+  credential:
+    profile: default
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sample
+    username: root
+    password: root

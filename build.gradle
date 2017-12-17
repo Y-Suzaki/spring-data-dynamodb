@@ -1,0 +1,44 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'sample.spring.web'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+// Domaが扱うSQLファイルをコンパイルより前に出力先ディレクトリにコピーする必要があるため
+processResources.destinationDir = compileJava.destinationDir
+compileJava.dependsOn processResources
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
+    compileOnly('org.projectlombok:lombok')
+
+    // dynamodb
+    compile('com.github.derjust:spring-data-dynamodb:4.5.0')
+
+    // datasource
+    compile('org.seasar.doma.boot:doma-spring-boot-starter:1.1.1')
+    compile('mysql:mysql-connector-java')
+
+    // test
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
